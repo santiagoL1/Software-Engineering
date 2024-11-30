@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Status</title>
+</head>
+<body>
+    <h1>Login Status</h1>
+
+    <!-- Display this message if the user is logged in -->
+    <div th:if="${isLoggedIn}">
+        <p>You are logged in! Welcome back!</p>
+    </div>
+
+    <!-- Display this message if the user is not logged in -->
+    <div th:unless="${isLoggedIn}">
+        <p>You are not logged in. Please log in to continue.</p>
+    </div>
+
+</body>
+</html>
+
+
+

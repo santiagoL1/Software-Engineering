@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Time-Based Greeting</title>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <p th:if="${timeOfDay == 'Morning'}">Good morning!</p>
+    <p th:if="${timeOfDay == 'Afternoon'}">Good afternoon!</p>
+    <p th:if="${timeOfDay == 'Evening'}">Good evening!</p>
+</body>
+</html>

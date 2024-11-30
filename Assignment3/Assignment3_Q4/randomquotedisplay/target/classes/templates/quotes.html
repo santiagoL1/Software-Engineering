@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<title>Random Quote Display</title>
+</head>
+<body>
+<div>
+<blockquote th:text="${quote.text}">Default Quote Text</blockquote>
+<footer th:text="${quote.author}">Default Author Name</footer>
+</div>
+<button onclick="window.location.reload();">Display Another Quote</button>
+</body>
+</html>

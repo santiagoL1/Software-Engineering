@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<title>Literature List</title>
+</head>
+<body>
+<h1>Literature</h1>
+<form action="/" method="get">
+<input type="text" name="genre" placeholder="Filter by genre">
+<button type="submit">Search</button>
+</form>
+<table>
+<tr>
+<th>Title</th>
+<th>Author</th>
+<th>Genre</th>
+<th>Price</th>
+</tr>
+<tr th:each="lit : ${literature}">
+<td th:text="${lit.title}"></td>
+<td th:text="${lit.author}"></td>
+<td th:text="${lit.genre}"></td>
+<td th:text="${lit.price}"></td>
+</tr>
+</table>
+</body>
+</html>
