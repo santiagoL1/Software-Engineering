@@ -1,6 +1,6 @@
 var button = document.querySelector('.button');
 var inputValue = document.querySelector('.inputValue');
-var cityNameElement = document.querySelector('.name'); 
+var cityNameElement = document.querySelector('.name');
 var currentTemp = document.querySelector('.currentTemp');
 var humidityElement = document.getElementById('humidity'); // Element to display humidity
 var windElement = document.getElementById('wind'); // Element to display wind
@@ -9,6 +9,8 @@ var celsiusButton = document.getElementById('celcius-link');
 var fahrenheitButton = document.getElementById('fahrenheit-link');
 
 let tempInCelsius = null; // Store the temperature in Celsius
+let tempInFahrenheit = null; // Store the temperature in Fahrenheit
+let forecastData = []; // Store forecast data
 
 button.addEventListener('click', function(event) {
     event.preventDefault(); 
@@ -20,7 +22,7 @@ button.addEventListener('click', function(event) {
         return; 
     }
 
-    fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=73102921a96041c57d3a90e735ba4ec3')
+    fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=d4f2c486e541abf1beabcf1eae8b8053')
     .then(response => {
         if (!response.ok) {
             throw new Error("Geolocation API responded with an error: " + response.status);
@@ -38,7 +40,8 @@ button.addEventListener('click', function(event) {
 
             cityNameElement.textContent = cityName;
             
-            fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=73102921a96041c57d3a90e735ba4ec3&units=metric')
+            // Fetch current weather data
+            fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=d4f2c486e541abf1beabcf1eae8b8053&units=metric')
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Weather API responded with an error: " + response.status);
@@ -48,7 +51,8 @@ button.addEventListener('click', function(event) {
             .then(weatherData => {
                 console.log('Weather Data:', weatherData); 
                 tempInCelsius = weatherData.main.temp; // Store temperature in Celsius
-                updateTemperatureDisplay(tempInCelsius); // Update display to Celsius
+                tempInFahrenheit = (tempInCelsius * 9/5) + 32; // Convert to Fahrenheit
+                updateTemperatureDisplay(tempInFahrenheit); // Display temperature in Fahrenheit
 
                 // Update humidity, wind speed, and weather type
                 humidityElement.textContent = weatherData.main.humidity + '%'; // Display humidity
@@ -58,6 +62,24 @@ button.addEventListener('click', function(event) {
             .catch(err => {
                 console.error("Error fetching weather data:", err);
                 alert("Error fetching weather data!");
+            });
+
+            // Fetch 5-day forecast data
+            fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=d4f2c486e541abf1beabcf1eae8b8053&units=metric')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Forecast API responded with an error: " + response.status);
+                }
+                return response.json();
+            })
+            .then(forecastDataResponse => {
+                console.log('Forecast Data:', forecastDataResponse);
+                forecastData = forecastDataResponse.list.filter((data, index) => index % 8 === 0); // Get forecast data for 5 days
+                updateForecastDays(forecastData);
+            })
+            .catch(err => {
+                console.error("Error fetching forecast data:", err);
+                alert("Error fetching forecast data!");
             });
         } else {
             alert("City not found in geolocation API response!");
@@ -71,7 +93,7 @@ button.addEventListener('click', function(event) {
 
 // Function to update the displayed temperature
 function updateTemperatureDisplay(temp) {
-    currentTemp.textContent = temp.toFixed(1) + '°C'; // Display temperature in Celsius
+    currentTemp.textContent = temp.toFixed(1) + '°F'; // Display temperature in Fahrenheit
 }
 
 // Event listeners for temperature toggle
@@ -84,9 +106,8 @@ celsiusButton.addEventListener('click', function(event) {
 
 fahrenheitButton.addEventListener('click', function(event) {
     event.preventDefault();
-    if (tempInCelsius !== null) {
-        const tempInFahrenheit = (tempInCelsius * 9/5) + 32; // Convert to Fahrenheit
-        currentTemp.textContent = tempInFahrenheit.toFixed(1) + '°F'; // Display temperature in Fahrenheit
+    if (tempInFahrenheit !== null) {
+        updateTemperatureDisplay(tempInFahrenheit); // Show Fahrenheit
     }
 });
 
@@ -108,21 +129,32 @@ function updateCurrentTime() {
 setInterval(updateCurrentTime, 60000);
 updateCurrentTime();
 
-// Function to update forecast days
-function updateForecastDays() {
+// Function to update the forecast days
+function updateForecastDays(forecastData) {
     const today = new Date();
     const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
     // Get the current day index (0-6, where 0 is Sunday)
     const currentDayIndex = today.getDay();
 
-    // Update the day names for the next 5 days
+    // Update the day names and temperatures for the next 5 days
     for (let i = 0; i < 5; i++) {
-        const forecastDayElement = document.querySelector(`.week-forecast .col:nth-child(${i + 1}) h3`);
-        forecastDayElement.textContent = daysOfWeek[(currentDayIndex + i + 1) % 7]; // Calculate next days
+        const forecastDayElement = document.querySelector(`.week-forecast .col:nth-child(${i + 1})`);
+        const dayData = forecastData[i];
+
+        // Set the day name
+        const forecastDayName = daysOfWeek[(currentDayIndex + i + 1) % 7]; // Calculate next days
+        forecastDayElement.querySelector('h3').textContent = forecastDayName;
+
+        // Set the temperature and weather condition
+        forecastDayElement.querySelector('.weather').textContent = dayData.weather[0].description.charAt(0).toUpperCase() + dayData.weather[0].description.slice(1);
+        const temp = (dayData.main.temp * 9/5) + 32; // Convert to Fahrenheit
+        forecastDayElement.querySelector('span').textContent = temp.toFixed(1) + '°F';
+
+        // Set the weather icon
+        const iconCode = dayData.weather[0].icon;
+        forecastDayElement.querySelector('img').src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`; 
     }
 }
 
-// Call the function to update the forecast days when the script runs
-updateForecastDays();
 

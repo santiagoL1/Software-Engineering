@@ -1,33 +1,50 @@
 package com.example.bluejayday;
 
 public class DayForecast {
-    private String name;
-    private String icon;
-    private String weather;
+    private String day;
+    private String image;
+    private String weatherType;
     private String temperature;
 
-    public DayForecast(String name, String icon, String weather, String temperature) {
-        this.name = name;
-        this.icon = icon;
-        this.weather = weather;
+    // Constructor
+    public DayForecast(String day, String image, String weatherType, String temperature) {
+        this.day = day;
+        this.image = image;
+        this.weatherType = weatherType;
         this.temperature = temperature;
     }
 
-    // Getters and setters
-    public String getName() {
-        return name;
+    // Getters and Setters
+    public String getDay() {
+        return day;
     }
 
-    public String getIcon() {
-        return icon;
+    public void setDay(String day) {
+        this.day = day;
     }
 
-    public String getWeather() {
-        return weather;
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getWeatherType() {
+        return weatherType;
+    }
+
+    public void setWeatherType(String weatherType) {
+        this.weatherType = weatherType;
     }
 
     public String getTemperature() {
         return temperature;
+    }
+
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
     }
 }
 

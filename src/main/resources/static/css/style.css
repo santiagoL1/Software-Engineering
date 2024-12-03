@@ -1,143 +1,248 @@
 body {
-    max-width: 900px;
-    margin: 0 auto;
-    background-color: #eae6e2;
-    color: #444e54;
-  }
-  header.taskbar{
-    width: 100%; 
-    height: 130px; 
-    background-color: #1E90FF; 
-    display: flex;
-    align-items: center; 
-    justify-content: flex-start;
-    padding: 0 20px;
-    position: fixed; 
-    top: 0;
-    left: 0;
-    z-index: 1000; 
-  }
-  .title {
-    color: white; 
-    font-size: 75px;
-    font-weight: bold; 
-    font-family: Arial, sans-serif; 
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #eae6e2;
+  color: #444e54;
 }
-  .logo {
-    height: 130px; 
-    margin-right: 15px; 
+
+header.taskbar {
+  width: 100%;
+  height: 130px;
+  background-color: #1E90FF;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
-  
-  main {
-    margin-top: 145px;
-  }
-  
-  hr {
-    max-width: 800px;
-    margin: 48px;
-    border: 1px solid #686d80;
-  }
-  
-  .search-form {
-    margin: 20px 25px;
-    padding: 5px 10px;
-    width: 300px;
-    border-radius: 5px;
-    border: 2px solid #332b1d;
-    font-family: "Oxygen Mono", monospace;
-    font-size: 12px;
-  }
-  
-  button {
-    display: inline-block;
-    border: 2px solid #332b1d;
-    border-radius: 5px;
-    padding: 5px 10px;
-    font-family: "Oxygen Mono", monospace;
-    font-size: 12px;
-    background-color: #d0cd8f;
-  }
-  button:hover {
-    background-color: #b9b559;
-  }
-  
-  .measurements {
-    position: relative;
-    left: 25px;
-    top: -10px;
-  }
-  
-  .current-weather {
-    margin-top: 50px;
-  }
-  
-  .city-title {
-    max-width: 300px;
-    font-size: 32px;
-    font-weight: bold;
-  }
-  
-  .temp-title {
-    /* color: #37718e; */
-    font-size: 140px;
-    font-family: "Inter", sans-serif;
-    text-align: center;
-  }
-  
-  .todays-info {
-    margin: 15px 0;
-  }
-  
-  .side-info {
-    position: relative;
-    left: 72px;
-  }
-  
-  p,
-  ul {
-    font-family: "Oxygen Mono", monospace;
-    font-size: 15px;
-  }
-  
-  li {
-    list-style: none;
-  }
-  
-  .week-forecast {
-    text-align: center;
-    font-family: "Inter", sans-serif;
-  }
-  
-  .weather {
-    margin-top: 2px;
-    margin-bottom: 6px;
-    font-size: 14px;
-  }
-  
-  h2 {
-    font-size: 48px;
-  }
-  
-  h3 {
-    font-size: 22px;
-    margin-bottom: -18px;
-  }
-  
-  span {
-    font-size: 20px;
-  }
-  
-  footer {
-    position: relative;
-    bottom: -100px;
-    text-align: center;
-  }
-  
-  a {
-    text-decoration: none;
-    color: #0a95c9;
-  }
-  
-  a:hover {
-    color: #007bff;
-  }
+
+.title {
+  color: white;
+  font-size: 75px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+.logo {
+  height: 130px;
+  margin-right: 15px;
+}
+
+/* New Search Bar Styling */
+.new-search-form {
+  display: flex;
+  align-items: center;
+  margin-left: 20px; /* Pushes the search bar to the right */
+  margin-right: 200px; /* Adds space between the right edge of the header and the search bar */
+}
+
+.new-search-input {
+  padding: 12px 20px; /* Makes the input box bigger */
+  font-size: 18px; /* Increases font size */
+  width: 400px; /* Increases the width of the search bar */
+  border: 2px solid #332b1d;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.new-search-button {
+  padding: 12px 20px; /* Makes the button larger */
+  font-size: 18px; /* Increases button font size */
+  background-color: #d0cd8f;
+  border: 2px solid #332b1d;
+  border-radius: 5px;
+}
+
+.new-search-button:hover {
+  background-color: #b9b559;
+}
+
+main {
+  margin-top: 145px;
+}
+
+hr {
+  max-width: 800px;
+  margin: 48px;
+  border: 1px solid #686d80;
+}
+
+.search-form {
+  margin: 20px 25px;
+  padding: 5px 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: 2px solid #332b1d;
+  font-family: "Oxygen Mono", monospace;
+  font-size: 12px;
+}
+
+button {
+  display: inline-block;
+  border: 2px solid #332b1d;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-family: "Oxygen Mono", monospace;
+  font-size: 12px;
+  background-color: #d0cd8f;
+}
+
+button:hover {
+  background-color: #b9b559;
+}
+
+.measurements {
+  position: relative;
+  left: 25px;
+  top: -10px;
+}
+
+.current-weather {
+  margin-top: 50px;
+}
+
+.city-title {
+  max-width: 300px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.temp-title {
+  font-size: 140px;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+}
+
+.todays-info {
+  margin: 15px 0;
+}
+
+.side-info {
+  position: relative;
+  left: 72px;
+}
+
+p,
+ul {
+  font-family: "Oxygen Mono", monospace;
+  font-size: 15px;
+}
+
+li {
+  list-style: none;
+}
+
+.week-forecast {
+  display: flex; /* Use flexbox for horizontal alignment */
+  justify-content: space-evenly; /* Evenly space the icons */
+  align-items: center; /* Vertically center the icons */
+  bottom: 0; /* Align to the bottom of the viewport */
+  width: 100%; /* Full width of the screen */
+  padding: 10px 0; /* Add some padding above and below */
+  font-family: "Inter", sans-serif;
+}
+
+.week-forecast .icon {
+  display: flex;
+  flex-direction: column; /* For labels below the icons */
+  align-items: center;
+  text-align: center;
+}
+
+.week-forecast .icon img {
+  max-width: 50px; /* Adjust the size of the icons */
+  height: auto;
+}
+
+.weather {
+  margin-top: 2px;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+h2 {
+  font-size: 48px;
+}
+
+h3 {
+  font-size: 22px;
+  margin-bottom: -18px;
+}
+
+span {
+  font-size: 20px;
+}
+
+footer {
+  position: relative;
+  bottom: -100px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: #0a95c9;
+}
+
+a:hover {
+  color: #007bff;
+}
+
+.response-container {
+  margin-top: 20px;
+  display: none; /* Initially hidden */
+  width: 80%;
+  margin: 0 auto;
+  background-color: #f1f1f1;
+  border: 1px solid #444;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.response-container p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: red;
+}
+
+/* Ensure that the container for the response text has a defined size */
+.api-response-box {
+  max-height: 300px; /* Adjust this value to suit your design */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 15px; /* Padding inside the box */
+  border: 1px solid #ccc; /* Optional: border for better visibility */
+  background-color: #f9f9f9; /* Optional: background color */
+  border-radius: 8px; /* Optional: rounded corners for design */
+  margin-top: 120px; /* Increased margin-top to ensure it moves down from the top of the page */
+  margin-bottom: 20px; /* Space at the bottom */
+}
+
+/* Ensure text inside the box wraps correctly */
+.api-response-box p {
+  white-space: pre-wrap; /* Keeps spacing and wraps the text properly */
+  word-wrap: break-word; /* Prevents text overflow */
+}
+
+
+
+
+
+
+
+
