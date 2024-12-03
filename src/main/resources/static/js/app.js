@@ -11,6 +11,7 @@ var fahrenheitButton = document.getElementById('fahrenheit-link');
 let tempInCelsius = null; // Store the temperature in Celsius
 let tempInFahrenheit = null; // Store the temperature in Fahrenheit
 let forecastData = []; // Store forecast data
+let currentUnit = 'F'; // Default unit is Fahrenheit
 
 button.addEventListener('click', function(event) {
     event.preventDefault(); 
@@ -52,7 +53,7 @@ button.addEventListener('click', function(event) {
                 console.log('Weather Data:', weatherData); 
                 tempInCelsius = weatherData.main.temp; // Store temperature in Celsius
                 tempInFahrenheit = (tempInCelsius * 9/5) + 32; // Convert to Fahrenheit
-                updateTemperatureDisplay(tempInFahrenheit); // Display temperature in Fahrenheit
+                updateTemperatureDisplay(tempInFahrenheit, currentUnit); // Display temperature in the selected unit
 
                 // Update humidity, wind speed, and weather type
                 humidityElement.textContent = weatherData.main.humidity + '%'; // Display humidity
@@ -92,22 +93,28 @@ button.addEventListener('click', function(event) {
 });
 
 // Function to update the displayed temperature
-function updateTemperatureDisplay(temp) {
-    currentTemp.textContent = temp.toFixed(1) + '°F'; // Display temperature in Fahrenheit
+function updateTemperatureDisplay(temp, unit) {
+    if (unit === 'C') {
+        currentTemp.textContent = temp.toFixed(1) + '°C'; // Display temperature in Celsius
+    } else {
+        currentTemp.textContent = temp.toFixed(1) + '°F'; // Display temperature in Fahrenheit
+    }
 }
 
 // Event listeners for temperature toggle
 celsiusButton.addEventListener('click', function(event) {
     event.preventDefault();
+    currentUnit = 'C'; // Set current unit to Celsius
     if (tempInCelsius !== null) {
-        updateTemperatureDisplay(tempInCelsius); // Show Celsius
+        updateTemperatureDisplay(tempInCelsius, currentUnit); // Show Celsius
     }
 });
 
 fahrenheitButton.addEventListener('click', function(event) {
     event.preventDefault();
+    currentUnit = 'F'; // Set current unit to Fahrenheit
     if (tempInFahrenheit !== null) {
-        updateTemperatureDisplay(tempInFahrenheit); // Show Fahrenheit
+        updateTemperatureDisplay(tempInFahrenheit, currentUnit); // Show Fahrenheit
     }
 });
 
