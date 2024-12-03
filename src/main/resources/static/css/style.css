@@ -42,7 +42,7 @@ header.taskbar {
 .new-search-input {
   padding: 12px 20px; /* Makes the input box bigger */
   font-size: 18px; /* Increases font size */
-  width: 400px; /* Increases the width of the search bar */
+  width: 300px; /* Increases the width of the search bar */
   border: 2px solid #332b1d;
   border-radius: 5px;
   margin-right: 10px;
@@ -237,6 +237,12 @@ a:hover {
 .api-response-box p {
   white-space: pre-wrap; /* Keeps spacing and wraps the text properly */
   word-wrap: break-word; /* Prevents text overflow */
+}
+
+.currentTemp {
+  font-size: 5rem; /* Adjust the size of the text */
+  font-weight: bold; /* Make the text bold */
+  color: #333; /* Adjust the text color if needed */
 }
 
 
